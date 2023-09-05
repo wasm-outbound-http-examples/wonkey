@@ -1,0 +1,19 @@
+{
+  "name": "Outbound HTTP request from WASM in Wonkey",
+  "image": "ubuntu:jammy",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/usr/local/wonkey/linux/bin"
+  },
+  "features": {
+    "ghcr.io/ebaskoro/devcontainer-features/emscripten:1": {},
+    "ghcr.io/devcontainers/features/common-utils": {}
+  },
+  "postCreateCommand": ".devcontainer/postCreate.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "wonkey-coders.vscode-wonkey"
+      ]
+    }
+  }
+}
