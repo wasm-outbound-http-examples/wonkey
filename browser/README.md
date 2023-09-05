@@ -7,7 +7,16 @@
 1. Open this repo in devcontainer, e.g. using Github Codespaces.
    Type or copy/paste following commands to devcontainer's terminal.
 
-2. Add `-s FETCH=1` to Emscripten's linker options to enable HTTP request functionality.
+
+2. Pre-Compile Wonkey's modules for web target (may take several minutes):
+
+```sh
+wake mods -target=emscripten
+```
+
+If you see some errors building Yaml module, just ignore them. Yaml library is not necessary for this example.
+
+3. Add `-s FETCH=1` to Emscripten's linker options to enable HTTP request functionality.
 
 ```sh
 sed -si.bak 's/WX_LD_OPTS_EMSCRIPTEN=.*/& -s FETCH=1/' /usr/local/wonkey/bin/linux/env_linux.txt
@@ -29,7 +38,13 @@ wake app -target=emscripten -build httpget.wx
 
 ### Test with browser
 
-1. Run simple HTTP server to temporarily publish project to Web:
+1. `cd` into output directory:
+
+```sh
+cd httpget.products/emscripten
+```
+
+2. Run simple HTTP server to temporarily publish project to Web:
 
 ```sh
 python3 -m http.server
